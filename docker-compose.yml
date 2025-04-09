@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  miptru:
+      container_name: miptru
+      build:
+        context: ./miptru
+        dockerfile: miptru.dockerfile
+      env_file:
+        - ./miptru/.env.production
+      ports:
+        - "3000:3000"
+      command: npm run start:prod
+
+  web:
+    container_name: web
+    build:
+      context: ./web
+      dockerfile: web.dockerfile
+    env_file:
+      - ./web/.env.production
+    ports:
+      - "3001:3001"
+    command: npm run start
